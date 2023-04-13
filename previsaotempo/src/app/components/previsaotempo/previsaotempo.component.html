@@ -1,0 +1,52 @@
+<div class="container">
+  <form class="formulario" [formGroup]="cordenada" style="width: 70%">
+    <div class="row">
+      <mat-form-field class="input" appearance="fill">
+        <mat-label>cidade</mat-label>
+        <input
+          matInput
+          value="London"
+          formControlName="cidade"
+          placeholder="Ex. Porto Alegre"
+        />
+        <mat-hint
+          *ngIf="cidadeErrada"
+          >{{ cidadeErro }}</mat-hint
+        >
+      </mat-form-field>
+    </div>
+    <div class="row">
+      <div class="col-6">
+        <mat-form-field class="input" appearance="fill">
+          <mat-label>Longitude</mat-label>
+          <input
+            value="{{ lon }}"
+            matInput
+            disabled="true"
+            placeholder="Ex. Bruno"
+          />
+        </mat-form-field>
+      </div>
+      <div class="col-6">
+        <mat-form-field class="input" appearance="fill" class="input">
+          <mat-label>Latitude</mat-label>
+          <input
+            matInput
+            value="{{ lat }}"
+            disabled="true"
+            type="number"
+            placeholder="Ex. 22"
+          />
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="row justify-content-between" style="margin-top: 1em">
+      <div class="col"></div>
+      <div class="col-auto">
+        <button mat-raised-button color="primary" (click)="getCordenadas()">
+          Avançar
+        </button>
+      </div>
+    </div>
+  </form>
+</div>
