@@ -10,12 +10,18 @@ import { PrevisaotempoService } from 'src/app/service/previsaotempo.service';
 export class PrevisaotempoComponent implements OnInit {
   lat: number = 0;
   lon: number = 0;
-  padrao: string = 'London';
   cidadeErro: String = 'A cidade informada não existe';
   cidadeErrada: boolean = false;
+  tempo: any;
 
   cordenada = this.fb.group({
-    cidade: [''],
+    name: [''],
+    temp_max: [''],
+    temp_min: [''],
+    temp: [''],
+    humidity: [''],
+    feels_like: [''],
+    description: ['']
   });
 
   constructor(
@@ -25,15 +31,33 @@ export class PrevisaotempoComponent implements OnInit {
 
   getCordenadas() {
     this.previsaoService
-      .getCordenadas(this.cordenada.value?.cidade || 'London')
+      .getCordenadas(this.cordenada.value?.name || 'London')
       .subscribe((data) => {
         if (data[0] != undefined) {
           this.cidadeErrada = false;
           this.lat = data[0].lat;
           this.lon = data[0].lon;
+          this.getPrivisaoTempo();
         } else {
           this.cidadeErrada = true;
         }
+      });
+  }
+
+  getPrivisaoTempo() {
+    this.previsaoService
+      .getPrevisaoTempo(this.lat, this.lon)
+      .subscribe((data) => {
+        console.log(data);
+
+        this.cordenada.patchValue({
+          "temp_max": data.main.temp_max,
+          "temp_min": data.main.temp_min,
+          "temp": data.main.temp,
+          "humidity": data.main.humidity,
+          "feels_like": data.main.feels_like,
+          "description": data.weather[0].description
+        })
       });
   }
 

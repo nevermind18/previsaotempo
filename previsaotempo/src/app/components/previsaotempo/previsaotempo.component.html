@@ -1,41 +1,99 @@
 <div class="container">
-  <form class="formulario" [formGroup]="cordenada" style="width: 70%">
+  <form
+    class="formulario"
+    [formGroup]="cordenada"
+    style="margin-top: 1em; width: 70%"
+  >
     <div class="row">
       <mat-form-field class="input" appearance="fill">
-        <mat-label>cidade</mat-label>
+        <mat-label>Cidade</mat-label>
         <input
           matInput
           value="London"
-          formControlName="cidade"
+          formControlName="name"
           placeholder="Ex. Porto Alegre"
         />
-        <mat-hint
-          *ngIf="cidadeErrada"
-          >{{ cidadeErro }}</mat-hint
-        >
+        <mat-hint *ngIf="cidadeErrada">{{ cidadeErro }}</mat-hint>
       </mat-form-field>
+    </div>
+    <div class="row" style="margin-top: 2em">
+      <div class="col-6">
+        <mat-form-field
+          class="input"
+          appearance="fill"
+          class="input"
+          readonly="true"
+        >
+          <mat-label>Temperatura</mat-label>
+          <input matInput formControlName="temp" placeholder="Ex. 914536915" />
+        </mat-form-field>
+      </div>
+      <div class="col-6">
+        <mat-form-field
+          class="input"
+          appearance="fill"
+          class="input"
+          readonly="true"
+        >
+          <mat-label>Estado</mat-label>
+          <input
+            matInput
+            formControlName="description"
+            placeholder="Ex. 800"
+            readonly="true"
+          />
+        </mat-form-field>
+      </div>
     </div>
     <div class="row">
       <div class="col-6">
         <mat-form-field class="input" appearance="fill">
-          <mat-label>Longitude</mat-label>
+          <mat-label>Temperatura Máxima</mat-label>
           <input
-            value="{{ lon }}"
             matInput
-            disabled="true"
+            formControlName="temp_max"
             placeholder="Ex. Bruno"
+            readonly="true"
           />
         </mat-form-field>
       </div>
       <div class="col-6">
         <mat-form-field class="input" appearance="fill" class="input">
-          <mat-label>Latitude</mat-label>
+          <mat-label>Temperatura Minima</mat-label>
           <input
             matInput
-            value="{{ lat }}"
-            disabled="true"
-            type="number"
+            formControlName="temp_min"
             placeholder="Ex. 22"
+            readonly="true"
+          />
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-6">
+        <mat-form-field class="input" appearance="fill" readonly="true">
+          <mat-label>Sensação Termica</mat-label>
+          <input
+            matInput
+            formControlName="feels_like"
+            readonly="true"
+            placeholder="Ex. rua dos Mais"
+          />
+        </mat-form-field>
+      </div>
+      <div class="col-6">
+        <mat-form-field
+          class="input"
+          appearance="fill"
+          class="input"
+          readonly="true"
+        >
+          <mat-label>Umidade</mat-label>
+          <input
+            matInput
+            formControlName="humidity"
+            placeholder="Ex. tete@gmail.com"
+            readonly="true"
           />
         </mat-form-field>
       </div>
@@ -43,7 +101,12 @@
     <div class="row justify-content-between" style="margin-top: 1em">
       <div class="col"></div>
       <div class="col-auto">
-        <button mat-raised-button color="primary" (click)="getCordenadas()">
+        <button
+          mat-raised-button
+          color="primary"
+          [disabled]=""
+          (click)="getCordenadas()"
+        >
           Avançar
         </button>
       </div>
