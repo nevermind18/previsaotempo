@@ -2,7 +2,7 @@
   <form
     class="formulario"
     [formGroup]="cordenada"
-    style="margin-top: 1em; width: 70%"
+    style="margin-top: 4em; width: 70%"
   >
     <div class="row">
       <mat-form-field class="input" appearance="fill">
@@ -25,9 +25,46 @@
           readonly="true"
         >
           <mat-label>Temperatura</mat-label>
-          <input matInput formControlName="temp" placeholder="Ex. 914536915" />
+          <input matInput formControlName="temp" placeholder="Ex. 30°C" />
         </mat-form-field>
       </div>
+      <div class="col-6">
+        <mat-form-field class="input" appearance="fill" readonly="true">
+          <mat-label>Sensação Térmica</mat-label>
+          <input
+            matInput
+            formControlName="feels_like"
+            readonly="true"
+            placeholder="Ex. 30°C"
+          />
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-6">
+        <mat-form-field class="input" appearance="fill" class="input">
+          <mat-label>Temperatura Mínima</mat-label>
+          <input
+            matInput
+            formControlName="temp_min"
+            placeholder="Ex. 10°C"
+            readonly="true"
+          />
+        </mat-form-field>
+      </div>
+      <div class="col-6">
+        <mat-form-field class="input" appearance="fill">
+          <mat-label>Temperatura Máxima</mat-label>
+          <input
+            matInput
+            formControlName="temp_max"
+            placeholder="Ex. 30°C"
+            readonly="true"
+          />
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="row">
       <div class="col-6">
         <mat-form-field
           class="input"
@@ -35,49 +72,12 @@
           class="input"
           readonly="true"
         >
-          <mat-label>Estado</mat-label>
+          <mat-label>Clima</mat-label>
           <input
             matInput
             formControlName="description"
-            placeholder="Ex. 800"
+            placeholder="Ex. chuvoso"
             readonly="true"
-          />
-        </mat-form-field>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-6">
-        <mat-form-field class="input" appearance="fill">
-          <mat-label>Temperatura Máxima</mat-label>
-          <input
-            matInput
-            formControlName="temp_max"
-            placeholder="Ex. Bruno"
-            readonly="true"
-          />
-        </mat-form-field>
-      </div>
-      <div class="col-6">
-        <mat-form-field class="input" appearance="fill" class="input">
-          <mat-label>Temperatura Minima</mat-label>
-          <input
-            matInput
-            formControlName="temp_min"
-            placeholder="Ex. 22"
-            readonly="true"
-          />
-        </mat-form-field>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-6">
-        <mat-form-field class="input" appearance="fill" readonly="true">
-          <mat-label>Sensação Termica</mat-label>
-          <input
-            matInput
-            formControlName="feels_like"
-            readonly="true"
-            placeholder="Ex. rua dos Mais"
           />
         </mat-form-field>
       </div>
@@ -92,15 +92,25 @@
           <input
             matInput
             formControlName="humidity"
-            placeholder="Ex. tete@gmail.com"
+            placeholder="Ex. 80%"
             readonly="true"
           />
         </mat-form-field>
       </div>
     </div>
-    <div class="row justify-content-between" style="margin-top: 1em">
-      <div class="col"></div>
+    <div class="row justify-content-between" style="margin-top: 1em; margin-bottom: 2em;">
+      <div class="col">
+      </div>
       <div class="col-auto">
+        <button
+          style="margin-right: 1em;"
+          mat-raised-button
+          color="primary"
+          [disabled]=""
+          (click)="limpar()"
+        >
+          Limpar
+        </button>
         <button
           mat-raised-button
           color="primary"

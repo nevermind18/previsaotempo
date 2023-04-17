@@ -51,14 +51,27 @@ export class PrevisaotempoComponent implements OnInit {
         console.log(data);
 
         this.cordenada.patchValue({
-          "temp_max": data.main.temp_max,
-          "temp_min": data.main.temp_min,
-          "temp": data.main.temp,
-          "humidity": data.main.humidity,
-          "feels_like": data.main.feels_like,
+          "temp_max": Math. floor(data.main.temp_max) + "°C",
+          "temp_min": Math. floor(data.main.temp_min) + "°C",
+          "temp": Math. floor(data.main.temp) + "°C",
+          "humidity": data.main.humidity + "%",
+          "feels_like": Math. floor(data.main.feels_like) + "°C",
           "description": data.weather[0].description
         })
       });
+  }
+
+  limpar(){
+    this.cidadeErrada = false;
+    this.cordenada.patchValue({
+      "temp_max": "",
+      "temp_min": "",
+      "temp": "",
+      "humidity": "",
+      "feels_like": "",
+      "description": "",
+      "name":"",
+    })
   }
 
   ngOnInit(): void {}
